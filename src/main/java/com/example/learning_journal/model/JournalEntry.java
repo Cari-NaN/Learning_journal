@@ -8,19 +8,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "learning_journals")
+@Table(name = "journal_entries")
 @Getter
 @Setter
-public class LearningJournal {
+public class JournalEntry {
 
     @Id
     private Long id;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
 }
