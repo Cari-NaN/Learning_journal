@@ -1,30 +1,33 @@
 package com.example.learning_journal.model;
 
 
+
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
+//UserTopic-Klasse (Zwischentabelle als Entity)
 @Entity
-@Table(name = "Class")
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class LearningClasses {
+public class UserTopic {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String className;
-
-    @Column(nullable = false)
-    private int numberOfStudents;
-
-    // OneToMany Relationship with User Entity
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "topic_id", nullable = false)
+    private Topic topic;
+
+    private LocalDateTime joinedAt;
 }
