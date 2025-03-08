@@ -3,7 +3,7 @@ package com.example.learning_journal.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.HashSet;
+
 import java.util.List;
 import java.util.Set;
 
@@ -53,6 +53,6 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<UserTopic> userTopics;
 
-    public void setTopics(List<Topic> topic) {
+    //public void setTopics(List<Topic> topic) {
     }
-}
+
