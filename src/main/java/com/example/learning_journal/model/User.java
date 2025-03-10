@@ -6,7 +6,7 @@ import lombok.*;
 
 import java.util.List;
 import java.util.Set;
-
+//→ JPA erlaubt es, Datenbanktabellen als Java-Entitäten zu modellieren, anstatt SQL-Abfragen direkt zu schreiben.
 //1. User-Entity (One-Seite der Beziehung)
 
 

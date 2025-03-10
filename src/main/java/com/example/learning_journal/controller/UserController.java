@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+//→ Mit JPA können Datenbankzugriffe deklarativ durch Repository-Interfaces erfolgen, ohne explizite SQL-Statements zu schreiben.
 
 //API Rest-Controller for user operations
 
