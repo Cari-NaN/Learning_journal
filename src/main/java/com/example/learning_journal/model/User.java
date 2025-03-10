@@ -2,7 +2,6 @@ package com.example.learning_journal.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.h2.engine.Role;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -38,3 +37,4 @@ public class User {
     )
     private Set<LearningClass> classes = new HashSet<>();
 }
+
