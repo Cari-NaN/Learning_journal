@@ -9,12 +9,6 @@ import java.util.Set;
 
 //1. User-Entity (One-Seite der Beziehung)
 
-//Erklärung:
-//
-//@OneToMany(mappedBy = "user"): Das mappedBy gibt an, dass user das Feld in Topic ist, das diese Beziehung verwaltet.
-//cascade = CascadeType.ALL: Dadurch werden Änderungen am User auch auf die Topics angewendet (z. B. wenn ein User gelöscht wird, werden auch seine Topics entfernt).
-//orphanRemoval = true: Stellt sicher, dass Topics ohne User gelöscht werden.
-
 
 // User Entity
 @Entity
@@ -50,6 +44,13 @@ public class User {
 
     // ManyToMany mit Zwischenklasse (Empfohlen, wenn zusätzliche Attribute benötigt werden)
     //Falls du z. B. speichern möchtest, wann ein User sich einem Topic angeschlossen hat, brauchst du eine eigene Entity für die Beziehung.
+
+    //Erklärung:
+//
+//@OneToMany(mappedBy = "user"): Das mappedBy gibt an, dass user das Feld in Topic ist, das diese Beziehung verwaltet.
+//cascade = CascadeType.ALL: Dadurch werden Änderungen am User auch auf die Topics angewendet (z. B. wenn ein User gelöscht wird, werden auch seine Topics entfernt).
+//orphanRemoval = true: Stellt sicher, dass Topics ohne User gelöscht werden.
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<UserTopic> userTopics;
 

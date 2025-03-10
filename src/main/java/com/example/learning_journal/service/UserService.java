@@ -21,9 +21,9 @@ import java.util.Optional;
 // Service class for user operations
 public class UserService {
 
-    private final TopicRepository topicRepository;
     // Injecting repositories
     private final UserRepository userRepository;
+    private final TopicRepository topicRepository;
     private final UserTopicRepository userTopicRepository;
 
     // Method to create a user with topics
