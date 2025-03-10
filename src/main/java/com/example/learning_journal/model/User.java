@@ -33,6 +33,10 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    // Email Column
+    @Column(nullable = false, unique = true)
+    private String email;
+
     // Role Column
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
