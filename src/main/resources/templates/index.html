@@ -10,8 +10,13 @@
 <p>Wähle eine Aktion:</p>
 
 <ul>
-    <li><a th:href="@{/users}">Benutzer anzeigen</a></li> //Link zur Benutzerliste (/users).
-    <li><a th:href="@{/h2-console}" target="_blank">H2 Datenbank</a></li> //Link zur H2-Datenbank-Konsole.
+    <!--Link zur Benutzerliste (/users).-->
+    <li><a th:href="@{/users}">Benutzer anzeigen</a></li>
+    <!--Link zur H2 Datenbank-Konsole (http://localhost:8080/h2-console).-->
+    <li><a th:href="@{/h2-console}" target="_blank">H2 Datenbank</a></li>
+    <!--/database-view → Leitet zur database-view.html, wo die Benutzer aus der H2-Datenbank angezeigt werden.-->
+    <li><a th:href="@{/database-view}">Gespeicherte Benutzer anzeigen</a></li>
+
 </ul>
 </body>
 </html>

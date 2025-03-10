@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Datenbank-Übersicht</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+<h1>Gespeicherte Benutzer in der H2-Datenbank</h1>
+
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email</th>
+  </tr>
+  <tr th:each="user : ${users}"> <!-- → Geht durch alle Benutzer und zeigt sie in einer Tabelle an.-->
+    <td th:text="${user.id}"></td><!-- → Zeigt die Benutzer-ID.-->
+    <td th:text="${user.username}"></td><!-- Zeigt den Username -->
+    <td th:text="${user.email}"></td><!-- Zeigt den Email -->
+  </tr>
+</table>
+
+<br>
+<a href="/">Zurück zur Startseite</a> <!--Ein Link führt zurück zur Startseite (index.html).-->
+</body>
+</html>
