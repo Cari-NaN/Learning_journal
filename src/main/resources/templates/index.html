@@ -1,10 +1,17 @@
+<!-- Diese index.html wird als Startseite der Webapplication verwendet -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <title>Startseite</title>
     <meta charset="UTF-8">
-    <title>Index</title>
 </head>
 <body>
+<h1>Willkommen zu meiner Spring Boot Anwendung!</h1>
+<p>Wähle eine Aktion:</p>
 
+<ul>
+    <li><a th:href="@{/users}">Benutzer anzeigen</a></li> //Link zur Benutzerliste (/users).
+    <li><a th:href="@{/h2-console}" target="_blank">H2 Datenbank</a></li> //Link zur H2-Datenbank-Konsole.
+</ul>
 </body>
 </html>

@@ -3,17 +3,15 @@ package com.example.learning_journal.controller;
 import com.example.learning_journal.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 //→ Mit JPA können Datenbankzugriffe deklarativ durch Repository-Interfaces erfolgen, ohne explizite SQL-Statements zu schreiben.
 
 //API Rest-Controller for user operations
 
 //Controller for creating a user with topics using UserService and Spring MVC annotations.
-@RestController
-@RequestMapping("/api/user")
+@Controller
+@RequestMapping("/users")
 @RequiredArgsConstructor
 //Service injection for UserService in the controller constructor
 public class UserController {
@@ -31,5 +29,9 @@ public class UserController {
     public ResponseEntity<String> assignUserToTopic(@PathVariable Long userId, @PathVariable Long topicId) {
         userService.assignUserToTopic(userId, topicId);
         return ResponseEntity.ok("User wurde dem Topic zugewiesen!");
+    }
+    @GetMapping()//Aufruf der Thymeleaf HTML Seite users.html
+    public String users() {
+        return "users";
     }
 }
