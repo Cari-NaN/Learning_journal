@@ -27,7 +27,7 @@ public class User {
 
     // Username Column
     @Column(nullable = false, unique = true)
-    private String username;
+    private String username; //Ein Benutzername muss eindeutig sein.
 
     // Password Column
     @Column(nullable = false)
