@@ -1,10 +1,9 @@
 package com.example.learning_journal.controller;
 
 
+import com.example.learning_journal.model.Role;
 import com.example.learning_journal.model.User;
 import com.example.learning_journal.repository.UserRepository;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +25,7 @@ public class RegisterController {
     //Speichert den Benutzer in der Datenbank und leitet weiter auf die Login-Seite.
     @PostMapping("/register")
     public String registerUser(@ModelAttribute User user) {
+        user.setRole(Role.USER); // Setzt die Role auf USER.
         userRepository.save(user); // Speichert den neuen Benutzer in der H2-Datenbank.
         return "redirect:/users"; // Weiterleitung auf die Benutzerliste.
     }
