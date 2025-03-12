@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Benutzer registrierung</title>
 </head>
 <body>
+ <h1>Neuen Benutzer registrieren</h1>
+<!--Das Formular speichert den Benutzer in der Datenbank.-->
+<form th:action="@{/register}" th:object="${user}" method="post">
+    <label for="username">Name:</label>
+    <input type="text" id="username" name="name" th:field="*{username}" required><br><!--→ Bindet das Namensfeld an das User-Objekt.-->
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" th:field="*{email}" required><br><!--→ Bindet das E-Mail-Feld an das User-Objekt.-->
+    <label for="password">Passwort:</label>
+    <input type="password" id="password" name="password" th:field="*{password}" required><br><!--Bindet das Passwort-Feld an das User-Objekt.-->
+    <input type="submit" value="Registrieren">
+    <button type="submit" value="Registrieren">Benutzer Registrieren</button>
+    <!--Das Formular sendet die Daten an /register, wo der Controller den Benutzer speichert.-->
+</form>
 
+<br>
+<a href="/">Zurück zur Startseite</a>
 </body>
 </html>
+<!-- Fazit
+✅ Link zur Registrierung auf der Startseite hinzugefügt
+✅ Registrierungsseite (register.html) mit Formular erstellt
+✅ Benutzer wird in der H2-Datenbank gespeichert
+✅ Nach der Registrierung wird zur Benutzerliste weitergeleitet-->
