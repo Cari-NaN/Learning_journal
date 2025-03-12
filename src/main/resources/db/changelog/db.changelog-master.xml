@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- 1️⃣ Создаём новую таблицу с правильным порядком колонок -->
+    <changeSet id="1-create-users-new" author="admin">
+        <createTable tableName="users_new">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="varchar(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- 2️⃣ Переносим данные из старой таблицы `users` в новую `users_new` -->
+    <changeSet id="2-migrate-users-data" author="admin">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="users"/>
+        </preConditions>
+        <sql>
+            INSERT INTO users_new (id, first_name, last_name, username, email, password, role)
+            SELECT id, 'Unbekannt', 'Unbekannt', username, 'test@example.com', password, role FROM users;
+        </sql>
+    </changeSet>
+
+    <!-- 3️⃣ Удаляем старую таблицу `users` -->
+    <changeSet id="3-drop-old-users" author="admin">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="users"/>
+        </preConditions>
+        <dropTable tableName="users"/>
+    </changeSet>
+
+    <!-- 4️⃣ Переименовываем `users_new` обратно в `users` -->
+    <changeSet id="4-rename-users-new" author="admin">
+        <renameTable oldTableName="users_new" newTableName="users"/>
+    </changeSet>
+
+</databaseChangeLog>
+
