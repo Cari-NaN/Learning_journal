@@ -29,4 +29,5 @@ public class RegisterController {
         userRepository.save(user); // Speichert den neuen Benutzer in der H2-Datenbank.
         return "redirect:/users"; // Weiterleitung auf die Benutzerliste.
     }
+
 }

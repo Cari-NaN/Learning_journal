@@ -14,6 +14,21 @@
     <input type="email" id="email" name="email" th:field="*{email}" required><br><!--→ Bindet das E-Mail-Feld an das User-Objekt.-->
     <label for="password">Passwort:</label>
     <input type="password" id="password" name="password" th:field="*{password}" required><br><!--Bindet das Passwort-Feld an das User-Objekt.-->
+    <h3>Wähle dein(e) Topic(s):</h3>
+
+    <!-- Debugging: Überprüfe, ob die Topics-Liste da ist -->
+   <p th:if="${topics == null}">❌ Keine Topics gefunden!</p>
+   <p th:if="${topics != null and topics.size() == 0}">❌ Topics-Liste ist leer!</p>
+
+    <div th:each="topic : ${topics}">
+
+        <label>
+            <input type="checkbox" th:value="${topic.id}" name="topicIds">
+        </label>
+
+        <label th:text="${topic.topicName}"></label><br>
+    </div>
+
     <input type="submit" value="Registrieren">
     <button type="submit" value="Registrieren">Benutzer Registrieren</button>
     <!--Das Formular sendet die Daten an /register, wo der Controller den Benutzer speichert.-->

@@ -15,11 +15,14 @@ import java.util.Set;
 
 @Entity
 @Table(name = "topics")
+@Builder
+@ToString(exclude = {"user", "userTopics"}) // Excluding user and userTopics from toString output
+// Lombok annotations for getters, setters, constructor, and builder methods.
 @Getter
 @Setter
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
+
 
 public class Topic {
     // Auto-generated ID
@@ -39,6 +42,7 @@ public class Topic {
     @Column(nullable = false)
     private int duration;
 
+
     // OneToMany Relationship with User Entity
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -47,4 +51,7 @@ public class Topic {
     //OneToMany zur Zwischenklasse UserTopic (Empfohlen, wenn zusätzliche Attribute benötigt werden)
     @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<UserTopic> userTopics;
+
+    public Topic(String softwareEngineering, String learnProgramming, int i) {
+    }
 }
