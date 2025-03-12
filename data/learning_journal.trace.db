@@ -219,3 +219,7 @@ select * from person [42102-232]
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "delete [*]* from users where username='admin2'"; ожидалось "identifier"
 Syntax error in SQL statement "delete [*]* from users where username='admin2'"; expected "identifier"; SQL statement:
 delete * from users where username='admin2' [42001-232]
+2025-03-12 10:52:25.185615+01:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabelle "DATABASECHANGELOGLOCK" nicht gefunden
+Table "DATABASECHANGELOGLOCK" not found; SQL statement:
+SELECT COUNT(*) FROM PUBLIC.DATABASECHANGELOGLOCK [42102-232]
