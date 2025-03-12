@@ -2,29 +2,37 @@ package com.example.learning_journal.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.h2.engine.Role;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String username;
+    @Column(nullable = false)
+    private String firstName; // Имя
 
     @Column(nullable = false)
-    private String password;
+    private String lastName; // Фамилия
+
+    @Column(unique = true, nullable = false)
+    private String username; // Логин
+
+    @Column(unique = true, nullable = false)
+    private String email; // E-Mail
+
+    @Column(nullable = false)
+    private String password; // Пароль
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -38,3 +46,4 @@ public class User {
     )
     private Set<LearningClass> classes = new HashSet<>();
 }
+

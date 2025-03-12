@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход</title>
+    <!-- подключаем бутстрап -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<!-- создаём контейнер -->
+<div class="container">
+    <div class="row">
+        <!-- указываем стиль адаптивной вёрстки -->
+        <div class="col-md-12">
+            <!-- пишем заголовок и пояснительный текст -->
+            <h1>Login</h1>
+            <p>Geben Sie Ihr Login und Passwort ein.</p>
+            <!-- метод, которым будем работать с формой — отправлять на сервер -->
+            <form method="post" action="/login">
+                <!-- поле ввода логина -->
+                <div class="form-group">
+                    <label>Benutzername:</label>
+                    <input type="text" id="username" name="username" class="form-control" required />
+                </div>
+                <!-- поле ввода пароля -->
+                <div class="form-group">
+                    <label for="password">Passwort:</label>
+                    <input type="password" id="password" name="password" class="form-control" required>
+                </div>
+                <!-- кнопка отправки данных на сервер -->
+                <div class="form-group">
+                    <input type="submit" name="submit" class="btn btn-primary" value="Login">
+                </div>
+                <!-- ссылка для тех, у кого ещё нет аккаунта -->
+                <p>Kein Konto? <a href="http://localhost:8080/users/register">Erstellen in einer Minute</a>.</p>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

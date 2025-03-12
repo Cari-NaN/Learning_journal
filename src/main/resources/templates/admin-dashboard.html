@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+<h1>Добро пожаловать, Администратор <span th:text="${username}"></span>!</h1>
+<ul>
+    <li><a href="/admin/manage-users">Управление пользователями</a></li>
+    <li><a href="/admin/manage-classes">Управление классами</a></li>
+    <li><a href="/logout">Выйти</a></li>
+</ul>
+</body>
+</html>
+
