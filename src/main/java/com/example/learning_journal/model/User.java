@@ -58,6 +58,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<UserTopic> userTopics;
 
-    public void setTopics(List<Topic> topic) {
+    public void setTopics(List<Topic> topics) {
     }
+
 }

@@ -23,8 +23,8 @@
     <div th:each="topic : ${topics}">
 
         <label>
-            <input type="checkbox" th:value="${topic.id}" name="topicIds">
-        </label>
+            <input type="checkbox" th:value="${topic.id}" name="topicIds" checked>
+
 
         <label th:text="${topic.topicName}"></label><br>
     </div>
