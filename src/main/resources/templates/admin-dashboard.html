@@ -2,14 +2,110 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Admin Dashboard</title>
+    <!-- подключаем бутстрап -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
-<h1>Добро пожаловать, Администратор <span th:text="${username}"></span>!</h1>
-<ul>
-    <li><a href="/admin/manage-users">Управление пользователями</a></li>
-    <li><a href="/admin/manage-classes">Управление классами</a></li>
-    <li><a href="/logout">Выйти</a></li>
-</ul>
+<style>
+    body {
+    background-color: rgb(242, 243, 237);
+    }
+    span {
+    color: red;
+    }
+    .col-md-7 {
+    margin-top: 30px;
+    }
+    .card-body {
+    background-color: rgb(179, 207, 221);
+    border: 2px solid black; /* Граница для наглядности */
+    }
+    .col-md-8 {
+    background-color: rgb(242, 243, 237);
+    }
+    .col-md-4 {
+    background-color: rgb(185, 186, 155);
+    display: flex;
+    justify-content: center; /* Горизонтальное центрирование */
+    align-items: center; /* Вертикальное центрирование */
+    border: 2px solid black; /* Граница для наглядности */
+    }
+    .col-md-4 img {
+    max-width: 100%; /* Изображение не выходит за границы контейнера */
+    max-height: 100%;
+
+    h3 {
+    margin-top: 30px;
+    }
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand p-0" href="/">
+            <img src="/images/logo.png" alt="Logo" width="40">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- создаём контейнер -->
+<div class="container">
+    <div class="row">
+        <!-- указываем стиль адаптивной вёрстки -->
+        <div class="col-md-7">
+            <!-- пишем заголовок и пояснительный текст -->
+            <h3>Herzlich Willkommen in Admindashboard!</h3>
+            <h4>Sie sind als <span th:text="${username}"></span> angemeldet.</h4>
+            <br />
+            <div class="card mb-3" style="max-width: 540px">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img
+                                src="/images/Student.png"
+                                class="img-fluid rounded-start"
+                                alt="icon-student"
+                        />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Benutzerverwaltung</h5>
+                            <a href="/admin/manage-users" class="btn btn-primary">Start</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="card mb-3" style="max-width: 540px">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img
+                                src="/images/Klass.png"
+                                class="img-fluid rounded-start"
+                                alt="icon-student"
+                        />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Klassenverwaltung</h5>
+                            <a href="/admin/classes" class="btn btn-primary">Start</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
 

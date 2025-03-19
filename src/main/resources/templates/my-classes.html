@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="form-group" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Meine Klassen</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<style>
+    body {
+    background-color: rgb(242, 243, 237);
+    }
+</style>
+<!-- Навигационная панель -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand p-0" href="/">
+            <img src="/images/logo.png" alt="Logo" width="40">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/user/dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container mt-4">
+    <h2>Meine Klassen</h2>
+
+    <!-- Отображаем текущие классы пользователя -->
+    <h4>Aktuelle Klassen:</h4>
+    <ul class="list-group">
+        <li th:each="learningClass, iterStat : ${userClasses}" class="list-group-item d-flex justify-content-between align-items-center">
+            <span th:text="${iterStat.index + 1} + '. ' + ${learningClass.className}"></span>
+            <form th:action="@{/users/leave-class}" method="post" onsubmit="return confirm('Sind Sie sicher, dass Sie diesen Kurs verlassen möchten?');">
+                <input type="hidden" name="classId" th:value="${learningClass.id}" />
+                <button type="submit" class="btn btn-danger btn-sm">Verlassen</button>
+            </form>
+        </li>
+    </ul>
+
+    <hr>
+
+    <!-- Форма присоединения к классу -->
+    <h4>Neuem Kurs beitreten:</h4>
+    <form th:action="@{/users/join-class}" method="post">
+        <select name="classId" class="form-control">
+            <option th:each="class : ${allClasses}"
+                    th:unless="${userClasses.contains(class)}"
+                    th:value="${class.id}"
+                    th:text="${class.className}">
+            </option>
+        </select>
+        <button type="submit" class="btn btn-success mt-2">Beitreten</button>
+    </form>
+
+    <hr>
+
+    <!-- Список пользователей класса -->
+    <h4>Teilnehmer eines Kurses anzeigen:</h4>
+    <form th:action="@{/users/class-members}" method="get">
+        <select name="classId" class="form-control">
+            <option th:each="class : ${userClasses}"
+                    th:value="${class.id}"
+                    th:text="${class.className}">
+            </option>
+        </select>
+        <button type="submit" class="btn btn-info mt-2">Anzeigen</button>
+    </form>
+
+    <hr>
+
+    <!-- Отображение списка участников класса -->
+    <div th:if="${classMembers}">
+        <h4>Teilnehmer des Kurses: <span th:text="${selectedClass.className}"></span></h4>
+        <ul class="list-group">
+            <li th:each="member, iterStat : ${classMembers}" class="list-group-item d-flex justify-content-between align-items-center">
+                <span th:text="${iterStat.index + 1} + '. ' + ${member.firstName + ' ' + member.lastName}"></span>
+                <button type="submit" class="btn btn btn-primary btn-sm">Einträge anschauen</button>
+            </li>
+
+        </ul>
+    </div>
+</div>
+</body>
+</html>
+

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="form-group" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Вход</title>
@@ -7,11 +7,38 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
+<style>
+    body {
+    background-color: rgb(242, 243, 237);
+    }
+</style>
+<!-- Навигационная панель -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand p-0" href="/">
+            <img src="/images/logo.png" alt="Logo" width="40">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/users/register">Registration</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <!-- создаём контейнер -->
 <div class="container">
     <div class="row">
         <!-- указываем стиль адаптивной вёрстки -->
-        <div class="col-md-12">
+        <div class="col-md-7">
             <!-- пишем заголовок и пояснительный текст -->
             <h1>Login</h1>
             <p>Geben Sie Ihr Login und Passwort ein.</p>
@@ -32,11 +59,12 @@
                     <input type="submit" name="submit" class="btn btn-primary" value="Login">
                 </div>
                 <!-- ссылка для тех, у кого ещё нет аккаунта -->
-                <p>Kein Konto? <a href="http://localhost:8080/users/register">Erstellen in einer Minute</a>.</p>
-                <p><a href="http://localhost:8080">Zurück zur Hauptseite.</a>.</p>
+                <p>Kein Konto? Registrieren Sie bitte.</p>
+<!--                <p><a href="http://localhost:8080">Zurück zur Hauptseite.</a>.</p>-->
             </form>
         </div>
     </div>
 </div>
+<p th:if="${error}" style="color: red;" th:text="${error}"></p>
 </body>
 </html>

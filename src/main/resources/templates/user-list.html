@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="form-group" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Benutzerliste</title>
+    <link rel="stylesheet" href="/css/style.css"> <!-- Подключаем CSS -->
+</head>
+<body>
+<h2>Benutzerliste</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Логин</th>
+        <th>Email</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.firstName}"></td>
+        <td th:text="${user.lastName}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.email}"></td>
+        <td>
+            <a th:href="@{/users/edit/{id}(id=${user.id})}">✏️ Bearbeiten:</a>
+            <form th:action="@{/users/delete/{id}(id=${user.id})}" method="post" style="display:inline;">
+                <button type="submit" onclick="return confirm('Вы уверены?')">🗑️ Удалить</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<a href="/admin-dashboard">⬅  Zurück zum Admindashboard</a>
+</body>
+</html>
