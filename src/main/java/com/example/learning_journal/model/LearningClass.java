@@ -7,12 +7,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "learning_classes")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "learning_classes")
 public class LearningClass {
 
     @Id
@@ -25,4 +25,5 @@ public class LearningClass {
     @ManyToMany(mappedBy = "classes")
     private Set<User> students = new HashSet<>();
 }
+
 

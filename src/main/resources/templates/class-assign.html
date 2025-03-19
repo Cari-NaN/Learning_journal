@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Schüler zuweisen</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand p-0" href="/admin/dashboard">
+            <img src="/images/logo.png" alt="Logo" width="40">
+        </a>
+    </div>
+</nav>
+
+<div class="container">
+    <h2 class="mt-4">Schüler zuweisen</h2>
+
+    <form th:action="@{/admin/classes/assign}" method="post">
+        <!-- Если админ пришел из Benutzerverwaltung (назначает класс ученику) -->
+        <div th:if="${user != null}" class="form-group">
+            <label for="classId">Wählen Sie eine Klasse:</label>
+            <select id="classId" name="classId" class="form-control" required>
+                <option value="" disabled>-- Wählen Sie eine Klasse --</option>
+                <option th:each="learningClass : ${classes}"
+                        th:value="${learningClass.id}"
+                        th:text="${learningClass.className}">
+                </option>
+            </select>
+            <!-- Скрытое поле для userId, если выбрали пользователя -->
+            <input type="hidden" name="userId" th:value="${user.id}" />
+        </div>
+
+        <!-- Если админ пришел из Klassenverwaltung (добавляет ученика в класс) -->
+        <div th:if="${learningClass != null}" class="form-group">
+            <label for="userId">Wählen Sie einen Schüler:</label>
+            <select id="userId" name="userId" class="form-control" required>
+                <option value="" disabled>-- Wählen Sie einen Schüler --</option>
+                <option th:each="user : ${users}"
+                        th:value="${user.id}"
+                        th:text="${user.firstName + ' ' + user.lastName}">
+                </option>
+            </select>
+            <!-- Скрытое поле для classId, если выбрали класс -->
+            <input type="hidden" name="classId" th:value="${learningClass.id}" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Zuweisen</button>
+        <a href="/admin/classes" class="btn btn-secondary">Zurück</a>
+    </form>
+</div>
+</body>
+</html>

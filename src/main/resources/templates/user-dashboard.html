@@ -2,13 +2,145 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>User Dashboard</title>
+    <!-- подключаем бутстрап -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <style>
+        body {
+        background-color: rgb(242, 243, 237);
+        }
+        span {
+        color: red;
+        }
+        .col-md-7 {
+        margin-top: 20px;
+        }
+        .card-body {
+        background-color: rgb(179, 207, 221);
+        border: 2px solid black; /* Граница для наглядности */
+        }
+        .col-md-8 {
+        background-color: rgb(242, 243, 237);
+        }
+        .col-md-4 {
+        background-color: rgb(185, 186, 155);
+        display: flex;
+        justify-content: center; /* Горизонтальное центрирование */
+        align-items: center; /* Вертикальное центрирование */
+        border: 2px solid black; /* Граница для наглядности */
+        }
+        .col-md-4 img {
+        max-width: 100%; /* Изображение не выходит за границы контейнера */
+        max-height: 100%;
+        }
+        h3 {
+        margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
-<h1>Добро пожаловать, <span th:text="${username}"></span>!</h1>
-<ul>
-    <li><a href="/user/my-classes">Мои классы</a></li>
-    <li><a href="/user/journal">Мой журнал</a></li>
-    <li><a href="/logout">Выйти</a></li>
-</ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand p-0" href="/">
+            <img src="/images/logo.png" alt="Logo" width="40">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- создаём контейнер -->
+<div class="container">
+    <div class="row">
+        <!-- указываем стиль адаптивной вёрстки -->
+        <div class="col-md-7">
+            <!-- пишем заголовок и пояснительный текст -->
+            <h3>Herzlich Willkommen in Userdashboard!</h3>
+            <h4>Sie sind als <span th:text="${username}"></span> angemeldet.</h4>
+            <br />
+            <div class="card mb-3" style="max-width: 540px">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img
+                                src="/images/Student.png"
+                                class="img-fluid rounded-start"
+                                alt="icon-student"
+                        />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Passwort ändern</h5>
+                            <a href="/users/change-password" class="btn btn-primary">Start</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="card mb-3" style="max-width: 540px">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img
+                                src="/images/Del-User-2.png"
+                                class="img-fluid rounded-start"
+                                alt="icon-student"
+                        />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Konto löschen</h5>
+                            <a href="/users/delete-account" class="btn btn-primary">Start</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="card mb-3" style="max-width: 540px">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img
+                                src="/images/Klass.png"
+                                class="img-fluid rounded-start"
+                                alt="icon-student"
+                        />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Meine Klassen</h5>
+                            <a href="/users/my-classes" class="btn btn-primary">Start</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="card mb-3" style="max-width: 540px">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img
+                                src="/images/Learning_Journal.png"
+                                class="img-fluid rounded-start"
+                                alt="icon-student"
+                        />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Mein Learning Journal</h5>
+                            <a href="/user/journal" class="btn btn-primary">Start</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

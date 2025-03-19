@@ -1,6 +1,5 @@
 package com.example.learning_journal.config;
 
-import com.example.learning_journal.service.UserDetailsServiceImpl; // Подключаем сервис
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,6 +19,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/login").permitAll()
+                        .requestMatchers("/", "/index.html", "/users/register", "/images/logo.png", "/images/Learning_Journal.jpg", "/images/background.png").permitAll()
                         .requestMatchers("/users/register").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
@@ -31,17 +32,14 @@ public class SecurityConfig {
                 .formLogin(login -> login
                         .loginPage("/login")
                         .successHandler((request, response, authentication) -> {
-                            authentication.getAuthorities().forEach(authority -> {
-                                try {
-                                    if (authority.getAuthority().equals("ROLE_ADMIN")) {
-                                        response.sendRedirect("/admin/dashboard");
-                                    } else {
-                                        response.sendRedirect("/user/dashboard");
-                                    }
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            });
+                            String redirectUrl = "/user/dashboard"; // По умолчанию для USER
+
+                            if (authentication.getAuthorities().stream()
+                                    .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
+                                redirectUrl = "/admin/dashboard"; // Если это админ, меняем URL
+                            }
+
+                            response.sendRedirect(redirectUrl);
                         })
                         .permitAll()
                 )

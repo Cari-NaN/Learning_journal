@@ -26,7 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                         .password(user.getPassword()) // Пароль уже хеширован в БД
                         .roles(user.getRole().name()) // Преобразуем enum Role в строку
                         .build()
-        ).orElseThrow(() -> new UsernameNotFoundException("Пользователь не найден: " + username));
+        ).orElseThrow(() -> new UsernameNotFoundException("Benutzer nicht gefunden: " + username));
     }
 }
 
